@@ -1,7 +1,7 @@
 name = "MLJNonnegativeMatrixFactorization"
 uuid = "5fbdd59d-4608-42a7-928b-f02c7ff8d663"
 authors = ["John Waczak <john.louis.waczak@gmail.com> and contributors"]
-version = "1.0.0-DEV"
+version = "0.1.0"
 
 [compat]
 julia = "1.10"

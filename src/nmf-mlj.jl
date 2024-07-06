@@ -1,4 +1,4 @@
-mutable struct NMF <: MLJMdelInterface.Unsupervised
+mutable struct NMF <: MLJModelInterface.Unsupervised
     k::Int
     cost::Symbol
     λw1::Float64

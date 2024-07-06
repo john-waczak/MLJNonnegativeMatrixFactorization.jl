@@ -3,8 +3,23 @@ uuid = "5fbdd59d-4608-42a7-928b-f02c7ff8d663"
 authors = ["John Waczak <john.louis.waczak@gmail.com> and contributors"]
 version = "0.1.0"
 
+[deps]
+Distances = "b4f34e82-e78d-54a5-968a-f98e89d6e8f7"
+LinearAlgebra = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
+MLJBase = "a7f614a8-145f-11e9-1d2a-a57a1082229d"
+MLJModelInterface = "e80e1ace-859a-464e-9ed9-23947d8ae3ea"
+MultivariateStats = "6f286f6a-111f-5878-ab1e-185364afe411"
+Random = "9a3f8284-a2c9-5f02-9a11-845980a1fd5c"
+Statistics = "10745b16-79ce-11e8-11f9-7d13ad32a3b2"
+
 [compat]
 julia = "1.10"
+Distances = "0.10"
+MLJBase = "1"
+MLJModelInterface = "1"
+MultivariateStats = "0.10"
+Statistics = "1.10"
+
 
 [extras]
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"

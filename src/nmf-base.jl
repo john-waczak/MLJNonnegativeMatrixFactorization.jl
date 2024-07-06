@@ -162,7 +162,7 @@ function fit_kl!(nmf::NMFBase, X;
 
         # 1b. Update H
         @inbounds for n ∈ 1:nmf.n, k ∈ 1:nmf.k
-            nmf.H[k,n] *= WtQ[k,n] / (ΣW[k] + λh1 + λh2*nmf.H[k,n])
+            nmf.H[k,n] *= max(WtQ[k,n] / (ΣW[k] + λh1 + λh2*nmf.H[k,n]), 0.0)
         end
 
         # 1c. (optional) Normalize columns of H
@@ -190,10 +190,11 @@ function fit_kl!(nmf::NMFBase, X;
 
         # 3. Check convergence
         if i == 1
-            cost = kl_div(nmf.W, nmf.H, X)
+            cost = kl_div(max.(nmf.W, 0.0), max.(nmf.H, 0.0), X)
         else
             cost_prev = cost
-            cost = kl_div(nmf.W, nmf.H, X)
+            cost = kl_div(max.(nmf.W, 0.0), max.(nmf.H, 0.0), X)
+            # cost = kl_div(nmf.W, nmf.H, X)
 
             diff= abs(cost - cost_prev)/min(abs(cost), abs(cost_prev))
             if diff <= tol

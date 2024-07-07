@@ -162,7 +162,7 @@ function fit_kl!(nmf::NMFBase, X;
 
         # 1b. Update H
         @inbounds for n ∈ 1:nmf.n, k ∈ 1:nmf.k
-            nmf.H[k,n] *= max(WtQ[k,n] / (ΣW[k] + λh1 + λh2*nmf.H[k,n]), 0.0)
+            nmf.H[k,n] *= max(WtQ[k,n] / (ΣW[k] + λh1 + λh2*nmf.H[k,n]), eps(eltype(WH)))
         end
 
         # 1c. (optional) Normalize columns of H
@@ -183,7 +183,7 @@ function fit_kl!(nmf::NMFBase, X;
 
         # 2b. Update W
         @inbounds for k ∈ 1:nmf.k, m ∈ 1:nmf.m
-            nmf.W[m,k] *= QHt[m,k] / (ΣH[k] + λw1 + λw2*nmf.W[m,k])
+            nmf.W[m,k] *= max(QHt[m,k] / (ΣH[k] + λw1 + λw2*nmf.W[m,k]), eps(eltype(WH)))
         end
 
         mul!(WH, nmf.W, nmf.H)

@@ -190,10 +190,10 @@ function fit_kl!(nmf::NMFBase, X;
 
         # 3. Check convergence
         if i == 1
-            cost = kl_div(max.(nmf.W, 0.0), max.(nmf.H, 0.0), X)
+            cost = kl_div(max.(nmf.W, eps(eltype(WH))), max.(nmf.H, eps(eltype(WH))), X)
         else
             cost_prev = cost
-            cost = kl_div(max.(nmf.W, 0.0), max.(nmf.H, 0.0), X)
+            cost = kl_div(max.(nmf.W, eps(eltype(WH))), max.(nmf.H, eps(eltype(WH))), X)
             # cost = kl_div(nmf.W, nmf.H, X)
 
             diff= abs(cost - cost_prev)/min(abs(cost), abs(cost_prev))
